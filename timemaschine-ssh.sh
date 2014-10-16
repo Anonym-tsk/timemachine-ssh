@@ -51,7 +51,6 @@ killTunnel() {
     MYPID=`getPid`
     for i in $MYPID; do kill $i; done
     if [ "$QUIET" = "false" ]; then echo "All processes killed"; fi
-    exit 0
 }
 
 status() {
@@ -81,6 +80,7 @@ Put your settings in the config section in the script itself!
 Options
  -q, --quiet                 quiet mode
  -k, --kill                  kill all $SCRIPT_NAME processes
+ -r, --restart               restart
  -h, --help                  show this screen
 "
 exit 0
@@ -95,12 +95,16 @@ while [ $# -gt 0 ]; do    # Until you run out of parameters . . .
         ;;
         -k|--kill)
             killTunnel
+            exit 0
         ;;
         -q|--quiet)
             QUIET=true
         ;;
         -h|--help)
             help
+        ;;
+        -r|--restart)
+            killTunnel
         ;;
         *)
  
