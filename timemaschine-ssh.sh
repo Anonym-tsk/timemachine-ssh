@@ -1,26 +1,7 @@
 #!/bin/sh
 
-## CONFIGURATION PARAMETERS
-
-# The ssh user name on remote server
-REMOTE_USER="user"
-# The hostname of remote server
-REMOTE_HOST="example.com"
-# The remote host with afp service
-AFP_HOST="127.0.0.1"
-# Port for tunneled afp service
-LOCAL_AFP_PORT="19548"
-# The label for the service, that's registered with dns-sd
-LABEL="$AFP_HOST over $REMOTE_HOST"
-# The path to the used ssh key file (if exists)
-KEYFILE=""
-# Quiet mode
-QUIET=false
-
-## NO NEED TO EDIT BELOW THIS LINE
-
-
-VERSION="2014-10-09"
+## READ THE CONFIG FILE
+source timemaschine-ssh.conf
 
 createTunnel() {
     if [[ -n "$KEYFILE" && -e "$KEYFILE" ]]; then
@@ -70,7 +51,7 @@ getPid() {
 
 help() {
     SCRIPT_NAME="$(basename "$(test -L "$0" && readlink "$0" || echo "$0")")"
-    echo "$SCRIPT_NAME version $VERSION
+    echo "$SCRIPT_NAME
 
 $SCRIPT_NAME is a small shell script that tunnels the AFP port of your disk station
 (and propably every other NAS with AFP and SSH services running) over ssh to your client computer.
