@@ -9,6 +9,11 @@ You run the script via cron to ensure that the connection still exists. If the t
 
 ## CHANGELOG
 
+### 2014-11-07
+- Added file config support
+- Refactoring
+- Added --check parameter for cron jobs
+
 ### 2014-10-09
 - Added quiet mode
 - Refactoring
