@@ -1,7 +1,7 @@
 #!/bin/sh
 
 ## READ THE CONFIG FILE
-source timemaschine-ssh.conf
+source $(dirname $0)/timemaschine-ssh.conf
 
 SSH_COMMAND="ssh -gNf -L $LOCAL_AFP_PORT:$AFP_HOST:548"
 
